@@ -1,0 +1,127 @@
+:root {
+  --azul: #5aa9e6;
+  --azul-hover: #4698d8;
+  --azul-claro: #dcecfa;
+  --azul-palido: #f1f7fd;
+  --texto: #1f3347;
+  --suave: #6b8197;
+  --borde: #d3e3f2;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--texto);
+  background: #fff;
+}
+
+/* Pantalla dividida */
+.pagina { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+
+.intro {
+  background: var(--azul-claro);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 56px;
+}
+.intro h1 {
+  margin: 0 0 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+.intro p { margin: 0; max-width: 26ch; color: var(--suave); font-size: 1.1rem; line-height: 1.5; }
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 32px;
+}
+.panel > * { width: 100%; max-width: 360px; }
+
+/* Formulario */
+label { display: block; margin: 18px 0 6px; font-size: .85rem; color: var(--suave); }
+input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 11px 0;
+  border: 0;
+  border-bottom: 2px solid var(--borde);
+  background: transparent;
+  color: var(--texto);
+  font-size: 1.1rem;
+  border-radius: 0;
+}
+input[type="text"]:focus, input[type="number"]:focus { border-color: var(--azul); outline: none; }
+
+fieldset { border: 0; margin: 20px 0 0; padding: 0; }
+legend { padding: 0; font-size: .85rem; color: var(--suave); }
+.segmento { display: flex; margin-top: 8px; border: 2px solid var(--borde); border-radius: 999px; overflow: hidden; }
+.segmento .opcion { flex: 1; margin: 0; }
+.opcion input { position: absolute; opacity: 0; }
+.opcion span {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--suave);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.opcion input:checked + span { background: var(--azul); color: #fff; }
+.opcion input:focus-visible + span { outline: 2px solid var(--azul); outline-offset: -4px; }
+
+button {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--azul);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s;
+}
+button:hover { background: var(--azul-hover); }
+:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; }
+#error { color: #d9534f; min-height: 1.2em; margin: 12px 0 8px; font-size: .9rem; }
+
+/* Cupón tipo boleto */
+#resultado { margin-top: 32px; }
+.cupon {
+  background: var(--azul-palido);
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(90, 169, 230, .18);
+}
+.cupon img { width: 100%; height: 190px; object-fit: cover; display: block; }
+.cupon-info { position: relative; padding: 24px 20px 22px; border-top: 2px dashed var(--borde); }
+/* Muescas del boleto */
+.cupon-info::before, .cupon-info::after {
+  content: "";
+  position: absolute;
+  top: -13px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+}
+.cupon-info::before { left: -12px; }
+.cupon-info::after { right: -12px; }
+.cupon-info h2 { margin: 0 0 8px; font-family: Georgia, serif; font-size: 1.35rem; font-weight: 400; }
+.cupon-info p { margin: 4px 0; color: var(--suave); }
+.cupon-info strong { color: var(--texto); }
+.reclamar { width: auto; margin-top: 14px; padding: 11px 28px; }
+
+/* Móvil */
+@media (max-width: 760px) {
+  .pagina { grid-template-columns: 1fr; min-height: 0; }
+  .intro { padding: 36px 28px; }
+  .intro h1 br { display: none; }
+}
